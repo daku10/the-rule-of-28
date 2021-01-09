@@ -23,8 +23,30 @@ export function calculate(
       }
     }
   });
+  const selected = [...tempSelected].filter(assertNotNull);
+  if (selected.length !== 3) {
+    return score;
+  }
+  if (selected.every((value) => value % 2 === 0)) {
+    score -= 2;
+  }
+  if (selected.every((value) => value % 2 === 1)) {
+    score += 2;
+  }
+  if (selected.every((value) => value < 8)) {
+    score += 4;
+  }
+  if (selected.every((value) => value > 6)) {
+    score += 4;
+  }
 
   return score;
+}
+
+function assertNotNull(
+  num: PossibleNumber | null
+): num is Exclude<PossibleNumber, null> {
+  return num !== null;
 }
 
 const scoreTable = {

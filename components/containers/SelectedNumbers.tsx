@@ -6,7 +6,7 @@ export function SelectedNumbers() {
   const selectedNumbers = useRecoilValue(selectedNumberState);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
       <Display text={selectedNumbers[0] ?? "x"} />
       <Display text={selectedNumbers[1] ?? "x"} />
       <Display text={selectedNumbers[2] ?? "x"} />

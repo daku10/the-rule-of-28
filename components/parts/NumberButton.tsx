@@ -1,8 +1,9 @@
 import { useCallback } from "react";
+import { PossibleNumber } from "../../types/type";
 
 type Props = {
-  number: number | null;
-  onClick: (num: number | null) => void;
+  number: PossibleNumber;
+  onClick: (num: PossibleNumber) => void;
   isSelected: boolean;
 };
 
@@ -10,10 +11,11 @@ export function NumberButton({ number, onClick, isSelected }: Props) {
   const handleClick = useCallback(
     (e) => {
       const value = e.target.value;
-      if (value === "") {
+      // 難しい
+      if (value === "" || value === "0") {
         onClick(null);
       }
-      onClick(Number(value));
+      onClick(Number(value) as PossibleNumber); // もうちょいきれいに書きたい
     },
     [onClick]
   );
@@ -22,7 +24,7 @@ export function NumberButton({ number, onClick, isSelected }: Props) {
     <button
       onClick={handleClick}
       value={number ?? ""}
-      style={{ borderColor: isSelected ? "red" : "black" }}
+      style={{ borderColor: isSelected ? "red" : "black", outline: "none" }}
     >
       {number ?? "×"}
     </button>

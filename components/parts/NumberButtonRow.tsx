@@ -3,7 +3,7 @@ import { NumberButton } from "./NumberButton";
 
 type Props = {
   currentNumber: PossibleNumber;
-  onClick: () => void;
+  onClick: (num: PossibleNumber | null) => void;
 };
 
 export function NumberButtonRows({ currentNumber, onClick }: Props) {
