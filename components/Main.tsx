@@ -9,7 +9,6 @@ export function Main() {
       <Score />
       <SelectedNumbers />
       <NumberSelector />
-      <NumberSelector />
       <ControlPanel />
     </>
   );

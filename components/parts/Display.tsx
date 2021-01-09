@@ -1,5 +1,5 @@
 type Props = {
-  text: string;
+  text: string | number;
 };
 
 export function Display({ text }: Props) {

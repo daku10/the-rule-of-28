@@ -1,11 +1,15 @@
+import { useRecoilValue } from "recoil";
+import { selectedNumberState } from "../../recoil/atom";
 import { Display } from "../parts/Display";
 
 export function SelectedNumbers() {
+  const selectedNumbers = useRecoilValue(selectedNumberState);
+
   return (
-    <>
-      <Display text="1" />
-      <Display text="2" />
-      <Display text="3" />
-    </>
+    <div style={{ display: "flex" }}>
+      <Display text={selectedNumbers[0] ?? "x"} />
+      <Display text={selectedNumbers[1] ?? "x"} />
+      <Display text={selectedNumbers[2] ?? "x"} />
+    </div>
   );
 }

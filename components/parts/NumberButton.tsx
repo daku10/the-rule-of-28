@@ -6,7 +6,7 @@ type Props = {
   isSelected: boolean;
 };
 
-export function NumberButton({ number, onClick }: Props) {
+export function NumberButton({ number, onClick, isSelected }: Props) {
   const handleClick = useCallback(
     (e) => {
       const value = e.target.value;
@@ -19,7 +19,11 @@ export function NumberButton({ number, onClick }: Props) {
   );
 
   return (
-    <button onClick={handleClick} value={number ?? ""}>
+    <button
+      onClick={handleClick}
+      value={number ?? ""}
+      style={{ borderColor: isSelected ? "red" : "black" }}
+    >
       {number ?? "×"}
     </button>
   );
