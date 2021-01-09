@@ -1,4 +1,4 @@
-import { PossibleNumber } from "../../types/type";
+import { PossibleNumber } from "../types/type";
 
 export function calculate(
   selectedNumbers: [PossibleNumber, PossibleNumber, PossibleNumber],

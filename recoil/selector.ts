@@ -9,7 +9,7 @@ import {
   SELECTED_NUMBER_SELECTOR_KEY,
 } from "./key";
 import { selector } from "recoil";
-import { calculate } from "../components/logics/ScoreCalculator";
+import { calculate } from "../logics/ScoreCalculator";
 import { PossibleNumber } from "../types/type";
 
 export const scoreSelector = selector({
