@@ -7,6 +7,12 @@ type Props = {
   isSelected: boolean;
 };
 
+const buildClassName = (isSelected: boolean) => {
+  return `border ${
+    isSelected ? "border-red-500" : "border-gray-500"
+  } rounded-2xl text-gray-700 px-2 py-2 w-12 h-12 transition duration-500 ease select-none hover:bg-gray-400 focus:outline-none focus:shadow-outline`;
+};
+
 export function NumberButton({ number, onClick, isSelected }: Props) {
   const handleClick = useCallback(
     (e) => {
@@ -24,7 +30,7 @@ export function NumberButton({ number, onClick, isSelected }: Props) {
     <button
       onClick={handleClick}
       value={number ?? ""}
-      style={{ borderColor: isSelected ? "red" : "black", outline: "none" }}
+      className={buildClassName(isSelected)}
     >
       {number ?? "×"}
     </button>

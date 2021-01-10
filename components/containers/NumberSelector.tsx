@@ -5,7 +5,7 @@ import { currentSelectNumberSelector } from "../../recoil/selector";
 export function NumberSelector() {
   const [value, setValue] = useRecoilState(currentSelectNumberSelector);
   return (
-    <>
+    <div className="space-y-1">
       <NumberButtonRows
         currentNumber={value[0]}
         onClick={(num) => {
@@ -18,6 +18,6 @@ export function NumberSelector() {
           setValue([value[0], num]);
         }}
       />
-    </>
+    </div>
   );
 }

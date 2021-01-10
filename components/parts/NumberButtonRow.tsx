@@ -8,7 +8,7 @@ type Props = {
 
 export function NumberButtonRows({ currentNumber, onClick }: Props) {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="flex space-x-1">
       <NumberButton
         number={2}
         onClick={onClick}

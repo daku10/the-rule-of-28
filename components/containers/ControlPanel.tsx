@@ -56,9 +56,9 @@ export function ControlPanel() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <Button text="proceed" onClick={handleClickProceed} />
-      <Button text="clear" onClick={handleClickClear} />
+    <div className="flex flex-col space-y-4">
+      <Button text="proceed" type="Success" onClick={handleClickProceed} />
+      <Button text="clear" type="Danger" onClick={handleClickClear} />
     </div>
   );
 }
