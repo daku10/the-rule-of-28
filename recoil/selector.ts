@@ -9,8 +9,9 @@ import {
   SELECTED_NUMBER_SELECTOR_KEY,
 } from "./key";
 import { selector } from "recoil";
-import { calculate } from "../logics/ScoreCalculator";
+import { calcBonusScore, calculate } from "../logics/ScoreCalculator";
 import { PossibleNumber } from "../types/type";
+import { assertNotNull } from "../utils/util";
 
 export const scoreSelector = selector({
   key: SCORE_SELECTOR_KEY,
@@ -18,7 +19,22 @@ export const scoreSelector = selector({
     const score = get(scoreState);
     const selectedNumbers = get(selectedNumberState);
     const currentSelectNumber = get(currentSelectNumberState);
-    return score + calculate(selectedNumbers, currentSelectNumber);
+    const calcScore = calculate(selectedNumbers, currentSelectNumber);
+    const target = Array.from(
+      new Set(
+        [...selectedNumbers, ...currentSelectNumber].filter(assertNotNull)
+      )
+    );
+    if (target.length === 3) {
+      return (
+        score +
+        calcScore +
+        calcBonusScore(
+          target as [PossibleNumber, PossibleNumber, PossibleNumber]
+        )
+      );
+    }
+    return score + calcScore;
   },
 });
 

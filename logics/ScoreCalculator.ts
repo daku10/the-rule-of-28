@@ -1,11 +1,12 @@
-import { PossibleNumber } from "../types/type";
+import type { PossibleNumber } from "../types/type";
+import { assertNotNull } from "../utils/util";
 
 export function calculate(
   selectedNumbers: [PossibleNumber, PossibleNumber, PossibleNumber],
   currentSelectNumbers: [PossibleNumber, PossibleNumber]
 ): number {
   const numberKind = new Set(
-    [...selectedNumbers, ...currentSelectNumbers].filter((v) => v !== null)
+    [...selectedNumbers, ...currentSelectNumbers].filter(assertNotNull)
   );
   // 最大3種類の数字までなのでこの条件の場合は駄目(0を返すのはバッドプラクティス感)
   if (numberKind.size > 3) {
@@ -23,30 +24,30 @@ export function calculate(
       }
     }
   });
-  const selected = [...tempSelected].filter(assertNotNull);
-  if (selected.length !== 3) {
-    return score;
-  }
-  if (selected.every((value) => value % 2 === 0)) {
-    score -= 2;
-  }
-  if (selected.every((value) => value % 2 === 1)) {
-    score += 2;
-  }
-  if (selected.every((value) => value < 8)) {
-    score += 4;
-  }
-  if (selected.every((value) => value > 6)) {
-    score += 4;
-  }
-
   return score;
 }
 
-function assertNotNull(
-  num: PossibleNumber | null
-): num is Exclude<PossibleNumber, null> {
-  return num !== null;
+export function calcBonusScore(
+  arg: [PossibleNumber, PossibleNumber, PossibleNumber]
+): number {
+  const filtered = [...arg].filter(assertNotNull);
+  if (filtered.length !== 3) {
+    return 0;
+  }
+  let score = 0;
+  if (filtered.every((value) => value % 2 === 0)) {
+    score -= 2;
+  }
+  if (filtered.every((value) => value % 2 === 1)) {
+    score += 2;
+  }
+  if (filtered.every((value) => value < 8)) {
+    score += 4;
+  }
+  if (filtered.every((value) => value > 6)) {
+    score += 4;
+  }
+  return score;
 }
 
 const scoreTable = {
